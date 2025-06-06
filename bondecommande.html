@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bon de Commande - Stratégie TikTok Immobilier</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .order-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .form-section {
+            padding: 40px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
+        }
+
+        .offer-selection {
+            display: grid;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .offer-card {
+            border: 3px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .offer-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 20px rgba(102,126,234,0.1);
+        }
+
+        .offer-card.selected {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .offer-card.featured {
+            border-color: #ffd700;
+            position: relative;
+        }
+
+        .offer-card.featured::before {
+            content: "⭐ OFFRE LANCEMENT";
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: #ffd700;
+            color: #333;
+            padding: 8px 15px;
+            border-radius: 15px;
+            font-weight: 700;
+            font-size: 0.8rem;
+        }
+
+        .offer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .offer-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .offer-price {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .offer-original-price {
+            font-size: 1.2rem;
+            text-decoration: line-through;
+            opacity: 0.7;
+            margin-right: 10px;
+        }
+
+        .offer-description {
+            font-size: 0.95rem;
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+
+        .offer-features {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .offer-features li {
+            padding: 5px 0;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .offer-features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #00b894;
+            font-weight: 700;
+        }
+
+        .offer-card.selected .offer-features li::before {
+            color: #ffd700;
+        }
+
+        .payment-section {
+            background: #f8f9fa;
+            padding: 30px;
+            margin-top: 30px;
+            border-radius: 15px;
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .payment-method {
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .payment-method:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        .payment-method.selected {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .payment-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .order-summary {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            margin-top: 30px;
+            border-radius: 15px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .summary-row:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(45deg, #00b894, #00a085);
+            color: white;
+            border: none;
+            padding: 20px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 30px;
+            box-shadow: 0 10px 25px rgba(0,184,148,0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0,184,148,0.4);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .security-info {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+
+        .security-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .guarantee-badge {
+            background: linear-gradient(45deg, #00b894, #00a085);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 25px;
+            text-align: center;
+            margin: 20px 0;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .payment-methods {
+                grid-template-columns: 1fr;
+            }
+            
+            .offer-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="order-container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🚀 Bon de Commande</h1>
+            <p>Stratégie TikTok Immobilier - Système P.R.E.S.E.N.C.E.™</p>
+        </div>
+
+        <form id="orderForm" class="form-section">
+            <!-- Informations Client -->
+            <div class="section-title">
+                👤 Vos informations
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="firstName">Prénom *</label>
+                    <input type="text" id="firstName" name="firstName" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Nom *</label>
+                    <input type="text" id="lastName" name="lastName" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Téléphone *</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="agency">Nom de votre agence</label>
+                <input type="text" id="agency" name="agency">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="city">Ville d'exercice *</label>
+                    <input type="text" id="city" name="city" required>
+                </div>
+                <div class="form-group">
+                    <label for="experience">Années d'expérience</label>
+                    <select name="experience" id="experience">
+                        <option value="">Sélectionnez</option>
+                        <option value="0-1">Moins d'1 an</option>
+                        <option value="1-3">1 à 3 ans</option>
+                        <option value="3-5">3 à 5 ans</option>
+                        <option value="5-10">5 à 10 ans</option>
+                        <option value="10+">Plus de 10 ans</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Sélection de l'offre -->
+            <div class="section-title">
+                📦 Choisissez votre offre
+            </div>
+
+            <div class="offer-selection">
+                <div class="offer-card" data-offer="test" data-price="97">
+                    <div class="offer-header">
+                        <div class="offer-name">Offre Test</div>
+                        <div class="offer-price">97€ <small>TTC</small></div>
+                    </div>
+                    <div class="offer-description">
+                        Découvrez notre méthode avec un échantillon
+                    </div>
+                    <ul class="offer-features">
+                        <li>5 vidéos d'exemple</li>
+                        <li>Scripts de base</li>
+                        <li>Guide de mise en place</li>
+                        <li>Remboursée si passage à l'offre complète</li>
+                    </ul>
+                </div>
+
+                <div class="offer-card featured" data-offer="signature" data-price="297">
+                    <div class="offer-header">
+                        <div class="offer-name">Offre Signature</div>
+                        <div class="offer-price">
+                            <span class="offer-original-price">597€</span>
+                            297€ <small>TTC</small>
+                        </div>
+                    </div>
+                    <div class="offer-description">
+                        Solution complète clé en main (5 places seulement)
+                    </div>
+                    <ul class="offer-features">
+                        <li>65 vidéos d'1 minute personnalisées</li>
+                        <li>65 scripts émotionnels adaptés</li>
+                        <li>Plan de publication 30 jours</li>
+                        <li>Système de publication automatique</li>
+                        <li>6 bonus exclusifs</li>
+                        <li>Accompagnement personnalisé</li>
+                        <li>Audit de votre communication</li>
+                    </ul>
+                </div>
+
+                <div class="offer-card" data-offer="publicite" data-price="997">
+                    <div class="offer-header">
+                        <div class="offer-name">Option Publicité TikTok</div>
+                        <div class="offer-price">997€ <small>TTC</small></div>
+                    </div>
+                    <div class="offer-description">
+                        Boostez votre visibilité avec des publicités ciblées
+                    </div>
+                    <ul class="offer-features">
+                        <li>Tout de l'offre Signature</li>
+                        <li>Campagnes publicitaires locales</li>
+                        <li>Ciblage précis de vos prospects</li>
+                        <li>Suivi et optimisation</li>
+                        <li>Reporting détaillé</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Informations complémentaires -->
+            <div class="section-title">
+                💬 Informations complémentaires
+            </div>
+
+            <div class="form-group">
+                <label for="objectives">Vos objectifs principaux</label>
+                <textarea id="objectives" name="objectives" rows="3" placeholder="Ex: Augmenter ma visibilité, attirer plus de vendeurs, me différencier..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="currentMandates">Combien de mandats vendeurs signez-vous par mois actuellement ?</label>
+                <select name="currentMandates" id="currentMandates">
+                    <option value="">Sélectionnez</option>
+                    <option value="0-2">0 à 2 mandats</option>
+                    <option value="3-5">3 à 5 mandats</option>
+                    <option value="6-10">6 à 10 mandats</option>
+                    <option value="10+">Plus de 10 mandats</option>
+                </select>
+            </div>
+
+            <!-- Paiement -->
+            <div class="payment-section">
+                <h3>💳 Mode de paiement</h3>
+                <div class="payment-methods">
+                    <div class="payment-method" data-method="stripe">
+                        <div class="payment-icon">💳</div>
+                        <div><strong>Carte Bancaire</strong></div>
+                        <div><small>Paiement sécurisé Stripe</small></div>
+                    </div>
+                    <div class="payment-method" data-method="paypal">
+                        <div class="payment-icon">🅿️</div>
+                        <div><strong>PayPal</strong></div>
+                        <div><small>Compte PayPal ou carte</small></div>
+                    </div>
+                </div>
+
+                <div class="guarantee-badge">
+                    🛡️ Garantie satisfaction 30 jours • Paiement 100% sécurisé
+                </div>
+            </div>
+
+            <!-- Résumé de commande -->
+            <div class="order-summary">
+                <h3>📋 Résumé de votre commande</h3>
+                <div class="summary-row">
+                    <span>Offre sélectionnée :</span>
+                    <span id="selectedOfferName">Aucune offre sélectionnée</span>
+                </div>
+                <div class="summary-row">
+                    <span>Prix TTC :</span>
+                    <span id="selectedOfferPrice">0€</span>
+                </div>
+                <div class="summary-row">
+                    <span>Délai de livraison :</span>
+                    <span>7 jours après réception des éléments</span>
+                </div>
+                <div class="summary-row">
+                    <span><strong>TOTAL À PAYER :</strong></span>
+                    <span id="totalPrice"><strong>0€ TTC</strong></span>
+                </div>
+            </div>
+
+            <!-- Bouton de soumission -->
+            <button type="submit" class="submit-btn" id="submitBtn" disabled>
+                🔒 Finaliser ma commande
+            </button>
+
+            <div class="security-info">
+                <div class="security-icons">
+                    <span>🔒 SSL</span>
+                    <span>🛡️ Sécurisé</span>
+                    <span>✅ Garanti</span>
+                </div>
+                <p>Paiement 100% sécurisé • Garantie satisfaction 30 jours</p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Gestion de la sélection d'offre
+        const offerCards = document.querySelectorAll('.offer-card');
+        const paymentMethods = document.querySelectorAll('.payment-method');
+        const submitBtn = document.getElementById('submitBtn');
+        
+        let selectedOffer = null;
+        let selectedPayment = null;
+
+        // Sélection d'offre
+        offerCards.forEach(card => {
+            card.addEventListener('click', () => {
+                offerCards.forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                
+                selectedOffer = {
+                    type: card.dataset.offer,
+                    price: card.dataset.price,
+                    name: card.querySelector('.offer-name').textContent
+                };
+                
+                updateOrderSummary();
+                checkFormCompletion();
+            });
+        });
+
+        // Sélection du mode de paiement
+        paymentMethods.forEach(method => {
+            method.addEventListener('click', () => {
+                paymentMethods.forEach(m => m.classList.remove('selected'));
+                method.classList.add('selected');
+                selectedPayment = method.dataset.method;
+                checkFormCompletion();
+            });
+        });
+
+        // Mise à jour du résumé
+        function updateOrderSummary() {
+            if (selectedOffer) {
+                document.getElementById('selectedOfferName').textContent = selectedOffer.name;
+                document.getElementById('selectedOfferPrice').textContent = selectedOffer.price + '€';
+                document.getElementById('totalPrice').innerHTML = '<strong>' + selectedOffer.price + '€ TTC</strong>';
+            }
+        }
+
+        // Vérification de la completion du formulaire
+        function checkFormCompletion() {
+            const requiredFields = document.querySelectorAll('input[required]');
+            let allFieldsFilled = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    allFieldsFilled = false;
+                }
+            });
+            
+            if (allFieldsFilled && selectedOffer && selectedPayment) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = '🚀 Procéder au paiement';
+            } else {
+                submitBtn.disabled = true;
+                submitBtn.textContent = '🔒 Finaliser ma commande';
+            }
+        }
+
+        // Vérification en temps réel
+        document.querySelectorAll('input[required]').forEach(input => {
+            input.addEventListener('input', checkFormCompletion);
+        });
+
+        // Soumission du formulaire
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!selectedOffer || !selectedPayment) {
+                alert('Veuillez sélectionner une offre et un mode de paiement');
+                return;
+            }
+
+            // Ici vous intégrerez vos URLs de paiement Stripe/PayPal
+            const formData = new FormData(this);
+            const orderData = {
+                offer: selectedOffer,
+                payment: selectedPayment,
+                customer: Object.fromEntries(formData)
+            };
+
+            console.log('Données de commande:', orderData);
+            
+            // Redirection vers la plateforme de paiement
+            if (selectedPayment === 'stripe') {
+                // Remplacez par votre URL Stripe
+                window.location.href = `https://checkout.stripe.com/c/pay/YOUR_STRIPE_URL#fidkdWxOYHwnPyd1blpxYHZxWjA0S3BiSmhNbGFxMW5pa2FRTHZNbjM8REt0NXNQbGhKZ3FOfXVRd0prdFdqYGNvQH1LfU5QXEtcU1w3NzRMNXZhfDBXXndrZ3VHSjU3aGpPYnVSaW5wQ2l8aFpPb1xQV1JGPU11Y2omZnJnbVUn`;
+            } else {
+                // Remplacez par votre URL PayPal
+                window.location.href = `https://www.paypal.com/ncp/payment/YOUR_PAYPAL_URL`;
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stratégie TikTok Immobilier - Présentation Professionnelle</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(255,107,107,0.3);
+            animation: pulse 2s infinite;
+            margin-bottom: 30px;
+        }
+
+        .hero-free-offer {
+            background: linear-gradient(45deg, #00b894, #00a085);
+            color: white;
+            padding: 20px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            display: inline-block;
+            margin-top: 30px;
+            box-shadow: 0 8px 20px rgba(0,184,148,0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-free-offer:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0,184,148,0.4);
+        }
+
+        .hero-free-offer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .hero-free-offer:hover::before {
+            left: 100%;
+        }
+
+        .free-value {
+            background: #ffd700;
+            color: #333;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-left: 10px;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .section {
+            padding: 60px 0;
+            background: white;
+        }
+
+        .section:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .problem-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .problem-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .system-showcase {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 0;
+            position: relative;
+        }
+
+        .system-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .system-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .system-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.15);
+        }
+
+        .system-letter {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #ffd700;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .feature-number {
+            display: inline-block;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .pricing-section {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 60px 0;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .pricing-card {
+            background: white;
+            color: #333;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .pricing-card.featured {
+            transform: scale(1.05);
+            border: 3px solid #ffd700;
+        }
+
+        .pricing-card.featured::before {
+            content: "⭐ OFFRE LANCEMENT";
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ffd700;
+            color: #333;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin: 20px 0;
+        }
+
+        .price-original {
+            font-size: 1.5rem;
+            text-decoration: line-through;
+            color: #7f8c8d;
+            margin-right: 10px;
+        }
+
+        .cta-section {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #ff6b6b;
+            padding: 20px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        .bonus-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .bonus-card {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(253,203,110,0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .bonus-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stats-section {
+            background: #2c3e50;
+            color: white;
+            padding: 60px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #ffd700;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Stratégie TikTok Immobilier</h1>
+                <p class="hero-subtitle">Le système express pour attirer des vendeurs sans vous filmer</p>
+                <div class="hero-badge">Sans pub • Sans contenu • Sans technique</div>
+                <div>
+                    <a href="https://tally.so/r/w8ER4z" target="_blank" class="hero-free-offer">
+                        🎁 NEUROSCRIPT GRATUIT
+                        <span class="free-value">Valeur Inestimable</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problème Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Vous êtes conseiller immobilier...</h2>
+                <p class="section-subtitle">Et vous savez qu'être visible en ligne est indispensable pour signer des mandats vendeurs</p>
+            </div>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">🎬</div>
+                    <h3>Vous ne savez pas quoi dire</h3>
+                    <p>Ni comment vous filmer</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">⏰</div>
+                    <h3>Vous n'avez pas le temps</h3>
+                    <p>Pour créer du contenu régulièrement</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">👥</div>
+                    <h3>Pendant ce temps...</h3>
+                    <p>D'autres conseillers prennent de l'avance</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Système PRESENCE -->
+    <section class="system-showcase">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Le Système P.R.E.S.E.N.C.E.™</h2>
+                <p class="section-subtitle">Pour être vu, ressenti et reconnu sans apparaître à l'écran</p>
+            </div>
+            <div class="system-grid">
+                <div class="system-card">
+                    <div class="system-letter">P</div>
+                    <h3>Perception</h3>
+                    <p>Vous êtes perçu comme professionnel et crédible</p>
+                </div>
+                <div class="system-card">
+                    <div class="system-letter">R</div>
+                    <h3>Réalité</h3>
+                    <p>Vos contenus parlent des vraies situations de vos prospects</p>
+                </div>
+                <div class="system-card">
+                    <div class="system-letter">E</div>
+                    <h3>Émotion</h3>
+                    <p>Chaque message déclenche une réaction</p>
+                </div>
+                <div class="system-card">
+                    <div class="system-letter">S</div>
+                    <h3>Storytelling</h3>
+                    <p>Des vidéos qui racontent, engagent, rassurent</p>
+                </div>
+                <div class="system-card">
+                    <div class="system-letter">E</div>
+                    <h3>Engagement</h3>
+                    <p>Likes, commentaires, prises de contact naturelles</p>
+                </div>
+                <div class="system-card">
+                    <div class="system-letter">N</div>
+                    <h3>Naturel</h3>
+                    <p>Votre voix, vos mots, vos images</p>
+                </div>
+                <div class="system-card">
+                    <div class="system-letter">C</div>
+                    <h3>Confiance</h3>
+                    <p>Votre audience vous connaît avant de vous contacter</p>
+                </div>
+                <div class="system-card">
+                    <div class="system-letter">E</div>
+                    <h3>Expérience</h3>
+                    <p>Vous ne postez pas, vous proposez un lien humain</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Méthode VIE -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">La Méthode V.I.E.™</h2>
+                <p class="section-subtitle">Voix - Image - Émotion</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-number">V</div>
+                    <h3>Voix</h3>
+                    <p>Votre voix crée une connexion émotionnelle directe avec vos prospects</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-number">I</div>
+                    <h3>Image</h3>
+                    <p>Vos photos + vidéo courte suffisent à poser votre autorité</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-number">E</div>
+                    <h3>Émotion</h3>
+                    <p>L'émotion transforme la vidéo en moteur d'engagement</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ce que vous obtenez -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">🚀 Ce que vous obtenez</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-number">65</div>
+                    <h3>Vidéos d'1 minute</h3>
+                    <p>Créées à partir de votre voix, vos photos, et une courte vidéo</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-number">65</div>
+                    <h3>Scripts émotionnels</h3>
+                    <p>Adaptés à vos profils vendeurs (divorce, succession, mutation...)</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-number">30</div>
+                    <h3>Plan de publication</h3>
+                    <p>Structuré sur 30 jours avec système de publication automatique</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bonus -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">🎁 Les 6 Bonus Exclusifs</h2>
+            </div>
+            <div class="bonus-grid">
+                <div class="bonus-card">
+                    <h3>🎯 Bibliothèque stratégique</h3>
+                    <p>65 scripts persona vendeur</p>
+                </div>
+                <div class="bonus-card">
+                    <h3>📖 Mini-guide secret</h3>
+                    <p>Ce que les réseaux ne vous diront jamais</p>
+                </div>
+                <div class="bonus-card">
+                    <h3>👻 Méthode invisible</h3>
+                    <p>Apparaître sans vous filmer</p>
+                </div>
+                <div class="bonus-card">
+                    <h3>🛠️ Système dévoilé</h3>
+                    <p>Outils + méthode complète</p>
+                </div>
+                <div class="bonus-card">
+                    <h3>🎯 Guide stratégique</h3>
+                    <p>Conscience & Trafic</p>
+                </div>
+                <div class="bonus-card">
+                    <h3>📈 Effet levier</h3>
+                    <p>Créez votre audience qualifiée</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div>
+                    <div class="stat-number">7</div>
+                    <p>Jours de délai</p>
+                </div>
+                <div>
+                    <div class="stat-number">65</div>
+                    <p>Vidéos créées</p>
+                </div>
+                <div>
+                    <div class="stat-number">9</div>
+                    <p>Mandats par conseiller en moyenne</p>
+                </div>
+                <div>
+                    <div class="stat-number">100%</div>
+                    <p>Sans vous filmer</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tarifs -->
+    <section class="pricing-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">💰 Tarifs</h2>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Offre Test</h3>
+                    <div class="price">97€</div>
+                    <p>TTC - Remboursée si vous passez à l'offre complète</p>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>Offre Signature</h3>
+                    <div class="price">
+                        <span class="price-original">597€</span>
+                        297€
+                    </div>
+                    <p>TTC - Offre lancement (5 places seulement)</p>
+                </div>
+                <div class="pricing-card">
+                    <h3>Option Publicité</h3>
+                    <div class="price">997€</div>
+                    <p>TTC - Publicité locale TikTok + suivi</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>🚀 Prêt à devenir visible et signer plus ?</h2>
+            <p style="font-size: 1.2rem; margin: 20px 0;">Chaque mois sans stratégie = des RDV perdus</p>
+            <div style="margin-top: 40px;">
+                <a href="https://tally.so/r/w8ER4z" target="_blank" style="display: inline-block; background: linear-gradient(45deg, #00b894, #00a085); color: white; padding: 20px 40px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1.2rem; margin: 0 15px 20px 15px; box-shadow: 0 10px 25px rgba(0,184,148,0.3); transition: all 0.3s ease;">
+                    🎁 NEUROSCRIPT GRATUIT
+                </a>
+                <a href="#" class="cta-button" style="margin: 0 15px 20px 15px;">📅 Réserver votre place maintenant</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
